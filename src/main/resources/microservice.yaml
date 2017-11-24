@@ -1,26 +1,22 @@
-APPLICATION_ID: springmvctest
+APPLICATION_ID: acmeair
 service_description:
-  name: order
-  version: 0.0.1
-  properties:
-    allowCrossApp: false
+  name: OrderService
+  version: 0.0.7
 cse:
   service:
     registry:
-      address: https://cse.cn-north-1.myhwclouds.com:443
-      instance:
-        watch: false
+      address: https://100.125.0.198:30100
   config:
     client:
-      serverUri: https://cse.cn-north-1.myhwclouds.com:443
-      refreshMode: 1
+      serverUri: https://100.125.0.198:30103
+      refreshMode: 0
       refresh_interval: 5000
   monitor:
     client:
-      serverUri: https://cse.cn-north-1.myhwclouds.com:443
+      serverUri: https://100.125.0.198:30109
   rest:
     address: 0.0.0.0:8080
-  credentials:
-    accessKey: ak
-    secretKey: sk
-    akskCustomCipher: default
+  handler:
+    chain:
+      Provider:
+        default: bizkeeper-provider,perf-stats,tracing-provider,sla-provider, qps-flowcontrol-provider
